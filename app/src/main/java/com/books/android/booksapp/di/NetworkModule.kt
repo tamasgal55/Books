@@ -17,7 +17,6 @@ object NetworkModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            //.addInterceptor(RequestInterceptor())
             .build()
     }
 
@@ -28,7 +27,6 @@ object NetworkModule {
             .client(okHttpClient)
             .baseUrl("https://www.googleapis.com/books/v1/")
             .addConverterFactory(GsonConverterFactory.create())
-            //.addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
             .build()
     }
 

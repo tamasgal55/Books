@@ -10,7 +10,7 @@ import com.books.android.booksapp.model.Book
 @Dao
 interface BookDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertBookList(posters: List<Book>)
+    suspend fun insertBookList(books: List<Book>)
 
     @Query("SELECT * FROM Book WHERE id = :id_")
     suspend fun getBook(id_: String): Book?

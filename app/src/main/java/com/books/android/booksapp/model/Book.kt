@@ -55,6 +55,5 @@ data class ImageLinks(
     val smallThumbnail: String,
     val thumbnail: String,
 ) {
-    val httpsThumbnail : String
-        get() = thumbnail.replace("http", "https")
+
 }
