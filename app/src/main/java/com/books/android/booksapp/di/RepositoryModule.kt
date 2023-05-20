@@ -1,6 +1,7 @@
 package com.books.android.booksapp.di
 
 import com.books.android.booksapp.network.BooksService
+import com.books.android.booksapp.persistence.BookDao
 import com.books.android.booksapp.ui.main.MainRepository
 import dagger.Module
 import dagger.Provides
@@ -14,8 +15,9 @@ object RepositoryModule {
     @Provides
     @ViewModelScoped
     fun provideMainRepository(
-        booksService: BooksService
+        booksService: BooksService,
+        bookDao: BookDao
     ): MainRepository {
-        return MainRepository(booksService)
+        return MainRepository(booksService, bookDao)
     }
 }

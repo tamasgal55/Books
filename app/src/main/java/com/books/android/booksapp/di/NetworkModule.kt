@@ -8,7 +8,9 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import javax.inject.Singleton
 import com.books.android.booksapp.network.BooksService
+import com.books.android.booksapp.network.RequestInterceptor
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -17,6 +19,7 @@ object NetworkModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(RequestInterceptor())
             .build()
     }
 

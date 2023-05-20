@@ -7,6 +7,7 @@ import androidx.room.TypeConverters
 import kotlinx.serialization.Serializable
 import javax.annotation.concurrent.Immutable
 import com.books.android.booksapp.typeconverters.StringListConverter
+
 @Serializable
 @Entity
 @Immutable
@@ -20,6 +21,7 @@ data class Book(
             id = "0",
             volumeInfo = VolumeInfo(
                 title = "Harry Potter",
+                pageCount = 200,
                 subtitle = "Harry Potter subtitle",
                 description = "Harry Potter description",
                 authors = listOf<String>("J. K. Rowling"),
@@ -32,19 +34,22 @@ data class Book(
 
 @Serializable
 data class VolumeInfo(
-    val title: String,
-    val subtitle: String,
-    val description: String,
+    val title: String?,
+    val subtitle: String?,
+    val description: String?,
+    val pageCount: Int?,
     @Embedded val imageLinks: ImageLinks? = null,
-    @TypeConverters(StringListConverter::class) val authors: List<String>,
-    val publisher: String,
-    val publishedDate: String,
+    @TypeConverters(StringListConverter::class) val authors: List<String>?,
+    val publisher: String?,
+    val publishedDate: String?,
 ) {
 
     fun allAuthors() : String {
         var x= ""
-        for (author in authors) {
-            x += "$author, "
+        if (authors != null) {
+            for (author in authors) {
+                x += "$author, "
+            }
         }
         return x.trimEnd(',', ' ')
     }
@@ -52,8 +57,8 @@ data class VolumeInfo(
 
 @Serializable
 data class ImageLinks(
-    val smallThumbnail: String,
-    val thumbnail: String,
+    val smallThumbnail: String?,
+    val thumbnail: String?,
 ) {
 
 }
