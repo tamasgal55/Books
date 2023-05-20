@@ -26,7 +26,11 @@ class MainRepository @Inject constructor(
     }
 
     suspend fun storeBook(book: Book) {
-        bookDao.insert(book)
+        //try {
+            bookDao.insert(book)
+        /*} catch(e: Exception) {
+            e.printStackTrace()
+        }*/
     }
 
     suspend fun deleteBook(book: Book) {
